@@ -6,3 +6,4 @@ function load_file {
 
 # call load_file
 load_file identity.sh
+load_file config.sh
