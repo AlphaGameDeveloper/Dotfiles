@@ -20,9 +20,6 @@
 #	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #	SOFTWARE.
 
-function load_file
-	source $HOME/.dotfiles/$1
-end
 
-load_file exports.sh
-load_file git/import.fish
+# move the __pycache__ folder
+export PYTHONPYCACHEPREFIX=/tmp/pycache

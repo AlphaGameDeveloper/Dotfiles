@@ -24,4 +24,5 @@ function load_file {
 	source $HOME/.dotfiles/$1
 }
 
+load_file exports.sh
 load_file git/import.sh
