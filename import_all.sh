@@ -25,4 +25,6 @@ function load_file {
 }
 
 load_file exports.sh
-load_file git/import.sh
+load_file git/alias.sh
+load_file git/config.sh
+load_file git/identity.sh
