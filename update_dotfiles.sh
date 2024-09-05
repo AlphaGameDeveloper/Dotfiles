@@ -1,3 +1,4 @@
+#!/usr/bin/env bash -x
 #	MIT License
 
 #	Copyright (c) 2024 Damien Boisvert
@@ -20,14 +21,24 @@
 #	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #	SOFTWARE.
 
-function load_file {
-	source $HOME/.dotfiles/$1
+set -e
+
+function update_failure {
+	echo "$p Dotfiles failed to update!"
+	echo "$p Specifically, '$*' failed."
 }
-
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+p="update_dotfiles.sh:"
+cd $SCRIPT_DIR
+# we get the original git commit to see if it updated
+ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-$SHELL $SCRIPT_DIR/update_dotfiles.sh
-load_file exports.sh
-load_file git/alias.sh
-load_file git/config.sh
-load_file git/identity.sh
+git pull > $SCRIPT_DIR/update_result || update_failure git pull
+date >> $SCRIPT_DIR/update_result
+
+NEW_COMMIT=$(git log --format="%H" -n 1)
+if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
+	echo "$p Dotfiles have been updated."
+	echo "$p ----> Previous commit: $ORIGINAL_COMMIT"
+	echo "$p ----> New      commit: $NEW_COMMIT"
+fi	
