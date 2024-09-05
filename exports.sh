@@ -23,3 +23,6 @@
 
 # move the __pycache__ folder
 export PYTHONPYCACHEPREFIX=/tmp/pycache
+
+# for gpg, set the TTY to use
+export GPG_TTY=$(tty)
