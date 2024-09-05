@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 #	MIT License
 
 #	Copyright (c) 2024 Damien Boisvert
@@ -27,14 +27,23 @@ function update_failure {
 	echo "$p Dotfiles failed to update!"
 	echo "$p Specifically, '$*' failed."
 }
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-p="update_dotfiles.sh:"
+
+if test -n "$BASH" ; then script=$BASH_SOURCE
+elif test -n "$TMOUT"; then script=${.sh.file}
+elif test -n "$ZSH_NAME" ; then script=${(%):-%x}
+elif test ${0##*/} = dash; then x=$(lsof -p $$ -Fn0 | tail -1); script=${x#n}
+else script=$0
+fi
+
+PRE_PWD=$(pwd)
+SCRIPT_DIR=$(dirname $script)
+
 cd $SCRIPT_DIR
 # we get the original git commit to see if it updated
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-git pull > $SCRIPT_DIR/update_result || update_failure git pull
-date >> $SCRIPT_DIR/update_result
+git pull > update_result || update_failure git pull
+date >> update_result
 
 NEW_COMMIT=$(git log --format="%H" -n 1)
 
@@ -46,3 +55,4 @@ if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
 	echo "$p ----> New      commit: $NEW_COMMIT"
 	echo "$p ----> Commit  message: $NEW_COMMIT_MSG"
 fi	
+cd $PRE_PWD

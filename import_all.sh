@@ -20,14 +20,26 @@
 #	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #	SOFTWARE.
 
+
 function load_file {
 	source $SCRIPT_DIR/$1
 }
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+if test -n "$BASH" ; then script=$BASH_SOURCE
+elif test -n "$TMOUT"; then script=${.sh.file}
+elif test -n "$ZSH_NAME" ; then script=${(%):-%x}
+elif test ${0##*/} = dash; then x=$(lsof -p $$ -Fn0 | tail -1); script=${x#n}
+else script=$0
+fi
+
+
+SCRIPT_DIR=$(dirname $script)
 
 $SHELL $SCRIPT_DIR/update_dotfiles.sh
 load_file exports.sh
 load_file git/alias.sh
 load_file git/config.sh
 load_file git/identity.sh
+
+# -- go back to where you came from! --
+cd $PRE_PWD
