@@ -37,8 +37,12 @@ git pull > $SCRIPT_DIR/update_result || update_failure git pull
 date >> $SCRIPT_DIR/update_result
 
 NEW_COMMIT=$(git log --format="%H" -n 1)
+
 if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
+	NEW_COMMIT_MSG=$(git log -1 --pretty=%B $NEW_COMMIT)
+	
 	echo "$p Dotfiles have been updated."
 	echo "$p ----> Previous commit: $ORIGINAL_COMMIT"
 	echo "$p ----> New      commit: $NEW_COMMIT"
+	echo "$p ----> Commit  message: $NEW_COMMIT_MSG"
 fi	

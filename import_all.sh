@@ -21,7 +21,7 @@
 #	SOFTWARE.
 
 function load_file {
-	source $HOME/.dotfiles/$1
+	source $SCRIPT_DIR/$1
 }
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
