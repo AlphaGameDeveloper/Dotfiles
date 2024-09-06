@@ -15,6 +15,9 @@ function pull_plugin_from_git {
 
 pull_plugin_from_git command-time https://github.com/popstas/zsh-command-time.git
 pull_plugin_from_git zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
+pull_plugin_from_git you-should-use https://github.com/MichaelAquilina/zsh-you-should-use.git
+pull_plugin_from_git zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
+
 # --------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -24,11 +27,19 @@ ZSH_COMMAND_TIME_MIN_SECONDS=3
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ZSH_COMMAND_TIME_COLOR="cyan"
 
-plugins=(git command-time copyfile zsh-syntax-highlighting)
+YSU_MESSAGE_POSITION="after"
+YSU_MODE=BESTMATCH
+YSU_IGNORED_ALIASES=("g" "ll" "lsa")
+
+plugins=(git 
+		 command-time 
+		 copyfile 
+		 zsh-syntax-highlighting 
+		 you-should-use 
+		 zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
-
-# Change if needed
 source $HOME/.dotfiles/import_all.sh
 
 # I did not write this.  My friend did.  Please try to decipher it.
