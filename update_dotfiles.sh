@@ -42,7 +42,7 @@ cd $SCRIPT_DIR
 # we get the original git commit to see if it updated
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-git pull > update_result || update_failure git pull
+git pull || update_failure git pull
 date >> update_result
 
 NEW_COMMIT=$(git log --format="%H" -n 1)
@@ -54,5 +54,7 @@ if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
 	echo "$p ----> Previous commit: $ORIGINAL_COMMIT"
 	echo "$p ----> New      commit: $NEW_COMMIT"
 	echo "$p ----> Commit  message: $NEW_COMMIT_MSG"
+	echo "$p"
+	echo "$p Restart your terminal session for changes to take effect"
 fi	
 cd $PRE_PWD
