@@ -1,3 +1,8 @@
+# zshrc
+# to be sourced in.  Symlink to ~/.zshrc
+
+# ----- install stuff if not already installed -----
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,32 +10,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# zshrc
-# to be sourced in.  Symlink to ~/.zshrc
-
-# ----- install stuff if not already installed -----
 p="zshrc:"
 PLUGINSDIR="$HOME/.oh-my-zsh/custom/plugins"
 THEMESDIR="$HOME/.oh-my-zsh/custom/themes"
 function pull_plugin_from_git {
 	# usage: <id> <repo>
 	if [ ! -d "$PLUGINSDIR/$1" ]; then
-		echo "$p Plugin '$1' doesn't exist (Installing it!)"
+		printf "$p Plugin '$1' doesn't exist. Installing... "
 		# SILENCE IT. IT MUST NOT SPEAK
+		local START_MS=$(($(date +%s%N)/1000000))
 		git clone $2 $PLUGINSDIR/$1 --depth 1 2> /dev/null
+		local END_MS=$(($(date +%s%N)/1000000))
+
+		printf "done. ($(($END_MS-$START_MS)) ms)\n"
 	fi
 }
 
 function pull_theme_from_git {
 	# usage: <id> <repo>
 	if [ ! -d "$THEMESDIR/$1" ]; then
-		echo "$p Theme '$1' doesn't exist (Installing it!)"
+		printf "$p Theme '$1' doesn't exist. Installing... "
 		# SILENCE IT. IT MUST NOT SPEAK
+		local START_MS=$(($(date +%s%N)/1000000))
 		git clone $2 $THEMESDIR/$1 --depth 1 2> /dev/null
+		local END_MS=$(($(date +%s%N)/1000000))
+				
+		printf "done. ($(($END_MS-$START_MS)) ms)\n"
 	fi
 }
-
-
 
 pull_plugin_from_git command-time https://github.com/popstas/zsh-command-time.git
 pull_plugin_from_git zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
