@@ -3,12 +3,6 @@
 
 # ----- install stuff if not already installed -----
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 p="zshrc:"
 PLUGINSDIR="$HOME/.oh-my-zsh/custom/plugins"
@@ -66,8 +60,16 @@ plugins=(git
 		 zsh-autosuggestions
 )
 
-source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/import_all.sh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+source $ZSH/oh-my-zsh.sh
 
 # I did not write this.  My friend did.  Please try to decipher it.
 # =================================================================
