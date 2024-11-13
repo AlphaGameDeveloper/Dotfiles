@@ -24,4 +24,7 @@ git config --global pull.ff only
 git config --global init.defaultBranch master
 git config --global commit.verbose true
 git config --global help.autocorrect 10
-git config --global url."git@github.com:".insteadOf "https://github.com/"
+
+if [ "$DOTFILES_GIT_SSH_ONLY" -ne "" ]; then
+  git config --global url."git@github.com:".insteadOf "https://github.com/"
+fi
