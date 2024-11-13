@@ -12,11 +12,8 @@ function pull_plugin_from_git {
 	if [ ! -d "$PLUGINSDIR/$1" ]; then
 		printf "$p Plugin '$1' doesn't exist. Installing... "
 		# SILENCE IT. IT MUST NOT SPEAK
-		local START_MS=$(($(date +%s%N)/1000000))
 		git clone $2 $PLUGINSDIR/$1 --depth 1 2> /dev/null
-		local END_MS=$(($(date +%s%N)/1000000))
-
-		printf "done. ($(($END_MS-$START_MS)) ms)\n"
+		printf "done.\n"
 	fi
 }
 
@@ -25,11 +22,8 @@ function pull_theme_from_git {
 	if [ ! -d "$THEMESDIR/$1" ]; then
 		printf "$p Theme '$1' doesn't exist. Installing... "
 		# SILENCE IT. IT MUST NOT SPEAK
-		local START_MS=$(($(date +%s%N)/1000000))
 		git clone $2 $THEMESDIR/$1 --depth 1 2> /dev/null
-		local END_MS=$(($(date +%s%N)/1000000))
-				
-		printf "done. ($(($END_MS-$START_MS)) ms)\n"
+		printf "done.\n"
 	fi
 }
 
