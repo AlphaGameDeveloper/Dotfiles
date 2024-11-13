@@ -42,7 +42,7 @@ cd $SCRIPT_DIR
 # we get the original git commit to see if it updated
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-git pull 2> /dev/null || update_failure git pull
+git pull > /dev/null 2> /dev/null || update_failure git pull
 
 NEW_COMMIT=$(git log --format="%H" -n 1)
 
