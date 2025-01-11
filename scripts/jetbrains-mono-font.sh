@@ -24,6 +24,16 @@
 command -v curl > /dev/null || (echo "curl is not installed. Please install it." && exit 1)
 command -v unzip > /dev/null || (echo "unzip is not installed. Please install it." && exit 1)
 
-curl -o /tmp/jetbrains-mono.zip -L https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -q
-unzip -o /tmp/jetbrains-mono.zip -d /tmp/jetbrains-mono-font
-cp /tmp/jetbrains-mono-font/fonts/ttf/*.ttf ~/Library/Fonts
+FONT_ZIP_LOCATION="/tmp/jetbrains-mono-font.zip"
+FONT_TEMPORARY_UNZIPPED_LOCATION="/tmp/jetbrains-mono-font"
+FONT_LIBRARY_FINAL_LOCATION="~/Library/Fonts/JetBrains-Mono"
+
+mkdir -p ~/Library/Fonts/JetBrains-Mono
+curl -o $FONT_ZIP_LOCATION -L https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -q
+unzip -o $FONT_ZIP_LOCATION -d $FONT_TEMPORARY_UNZIPPED_LOCATION
+cp $FONT_TEMPORARY_UNZIPPED_LOCATION/fonts/ttf/*.ttf $FONT_LIBRARY_FINAL_LOCATION
+
+# Cleaning up!
+rm -rf $FONT_TEMPORARY_UNZIPPED_LOCATION
+rm -f $FONT_ZIP_LOCATION
+echo "JetBrains Mono font installed successfully!"
