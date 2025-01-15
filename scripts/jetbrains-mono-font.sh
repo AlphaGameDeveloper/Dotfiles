@@ -26,14 +26,20 @@ command -v unzip > /dev/null || (echo "unzip is not installed. Please install it
 
 FONT_ZIP_LOCATION="/tmp/jetbrains-mono-font.zip"
 FONT_TEMPORARY_UNZIPPED_LOCATION="/tmp/jetbrains-mono-font"
-FONT_LIBRARY_FINAL_LOCATION="~/Library/Fonts/JetBrains-Mono"
+FONT_LIBRARY_FINAL_LOCATION="$HOME/Library/Fonts/JetBrains-Mono"
 
-mkdir -p ~/Library/Fonts/JetBrains-Mono
+mkdir -p $FONT_LIBRARY_FINAL_LOCATION
 curl -o $FONT_ZIP_LOCATION -L https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -q
 unzip -o $FONT_ZIP_LOCATION -d $FONT_TEMPORARY_UNZIPPED_LOCATION
-cp $FONT_TEMPORARY_UNZIPPED_LOCATION/fonts/ttf/*.ttf $FONT_LIBRARY_FINAL_LOCATION
+rm $FONT_ZIP_LOCATION
+
+if [ "$1" -eq "macos" ]; then
+	cp $FONT_TEMPORARY_UNZIPPED_LOCATION/fonts/ttf/*.ttf $FONT_LIBRARY_FINAL_LOCATION
+else
+	echo "Font files installed at $FONT_TEMPORARY_UNZIPPED_LOCATION."
+	exit 0
+fi
 
 # Cleaning up!
 rm -rf $FONT_TEMPORARY_UNZIPPED_LOCATION
-rm -f $FONT_ZIP_LOCATION
 echo "JetBrains Mono font installed successfully!"
