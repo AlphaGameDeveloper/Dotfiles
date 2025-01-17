@@ -26,6 +26,9 @@ set -e
 function update_failure {
 	echo "$p Dotfiles failed to update!"
 	echo "$p Specifically, '$*' failed."
+	echo "$p Error information can be found at:"
+	echo "$p 	$ADF_GITPULL_OUTPUT_FILE"
+	exit 1
 }
 
 if test -n "$BASH" ; then script=$BASH_SOURCE
@@ -42,9 +45,15 @@ cd $SCRIPT_DIR
 # we get the original git commit to see if it updated
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-git pull > /dev/null 2> /dev/null || update_failure git pull
+ADF_GITPULL_OUTPUT_FILE=$(mktemp -q -t alphadotfiles)
+
+git pull > $ADF_GITPULL_OUTPUT_FILE 2> $ADF_GITPULL_OUTPUT_FILE || update_failure git pull
 
 NEW_COMMIT=$(git log --format="%H" -n 1)
+
+if [ "$ADF_KEEP_OLD_GITPULL_FILES" -eq "" ]; then
+	rm $ADF_GITPULL_OUTPUT_FILE
+fi
 
 if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
 	NEW_COMMIT_MSG=$(git log -1 --pretty=%B $NEW_COMMIT)
@@ -54,4 +63,6 @@ if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
 	source ~/.zshrc # default config
 	exit 0
 fi	
-cd $PRE_PWD
+
+# clean up as we are (in theory) being sourced in
+ADF_GITPULL_OUTPUT_FILE=""
