@@ -11,7 +11,6 @@ but it is a work in progress.  Right now, you should:
 cd ~ && \
 git clone https://github.com/AlphaGameDeveloper/Dotfiles.git .dotfiles && \
 echo "source $(pwd)/.dotfiles/zsh/rc.sh" > ~/.zshrc && \
-echo "source $(pwd)/.dotfiles/zsh/p10k.zsh" > ~/.p10k.zsh
-
+echo "source $(pwd)/.dotfiles/zsh/p10k.zsh" > ~/.p10k.zsh && \
 source ~/.zshrc
 ```
