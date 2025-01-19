@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Default Window Settings</key>
+	<string>AlphaGameDev</string>
+	<key>DefaultProfilesVersion</key>
+	<integer>1</integer>
+	<key>HasMigratedDefaults</key>
+	<true/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 6</string>
+	<key>NSNavLastRootDirectory</key>
+	<string>~/Documents</string>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{800, 448}</string>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>1144 -485 445 114 223 -900 1440 875 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>543 -580 800 448 223 -900 1440 875 </string>
+	<key>NSWindow Frame TTAppPreferences</key>
+	<string>610 -579 667 554 223 -900 1440 875 </string>
+	<key>NSWindow Frame TTWindow AlphaGameDev</key>
+	<string>606 -735 585 418 223 -900 1440 875 </string>
+	<key>NSWindow Frame TTWindow Basic</key>
+	<string>263 -428 585 371 223 -900 1440 875 </string>
+	<key>NSWindow Frame TTWindow Grass</key>
+	<string>263 -428 585 371 223 -900 1440 875 </string>
+	<key>ProfileCurrentVersion</key>
+	<real>2.0699999999999998</real>
+	<key>SecureKeyboardEntry</key>
+	<false/>
+	<key>Shell</key>
+	<string></string>
+	<key>Startup Window Settings</key>
+	<string>AlphaGameDev</string>
+	<key>TTAppPreferences Selected Tab</key>
+	<integer>1</integer>
+	<key>Window Settings</key>
+	<dict>
+		<key>AlphaGameDev</key>
+		<dict>
+			<key>Font</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRy
+			b290gAGkCwwVFlUkbnVsbNQNDg8QERITFFZOU1NpemVYTlNmRmxh
+			Z3NWTlNOYW1lViRjbGFzcyNAJgAAAAAAABAQgAKAA18QFUpldEJy
+			YWluc01vbm8tUmVndWxhctIXGBkaWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNWTlNGb250ohkbWE5TT2JqZWN0CBEaJCkyN0lMUVNYXmdud36F
+			jpCSlKyxvMXMzwAAAAAAAAEBAAAAAAAAABwAAAAAAAAAAAAAAAAA
+			AADY
+			</data>
+			<key>ProfileCurrentVersion</key>
+			<real>2.0699999999999998</real>
+			<key>name</key>
+			<string>AlphaGameDev</string>
+			<key>noWarnProcesses</key>
+			<array>
+				<dict>
+					<key>ProcessName</key>
+					<string>screen</string>
+				</dict>
+				<dict>
+					<key>ProcessName</key>
+					<string>tmux</string>
+				</dict>
+				<dict>
+					<key>ProcessName</key>
+					<string>watch</string>
+				</dict>
+			</array>
+			<key>shellExitAction</key>
+			<integer>1</integer>
+			<key>type</key>
+			<string>Window Settings</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
