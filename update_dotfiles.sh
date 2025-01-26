@@ -45,7 +45,12 @@ cd $SCRIPT_DIR
 # we get the original git commit to see if it updated
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
-ADF_GITPULL_OUTPUT_FILE=$(mktemp -q -t alphadotfiles)
+# if linux
+if [ "$(uname)" == "Linux" ]; then
+	ADF_GITPULL_OUTPUT_FILE=$(mktemp -t alphadotfiles.XXXXXX)
+elif [ "$(uname)" == "Darwin" ]; then
+	ADF_GITPULL_OUTPUT_FILE=$(mktemp -t alphadotfiles)
+fi
 
 git pull > $ADF_GITPULL_OUTPUT_FILE 2> $ADF_GITPULL_OUTPUT_FILE || update_failure git pull
 
