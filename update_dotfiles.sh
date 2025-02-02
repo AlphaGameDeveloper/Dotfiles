@@ -64,10 +64,7 @@ if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then
 	NEW_COMMIT_MSG=$(git log -1 --pretty=%B $NEW_COMMIT)
 	
 	echo "$p Dotfiles have been updated. ($NEW_COMMIT)"
-	echo "$p Restarting..."
-	source ~/.zshrc # default config
+	echo "$p You should restart your shell session, or reload the dotfiles with"
+ 	echo "$p source ~/.zshrc (or wherever you store the file!)"
 	exit 0
 fi	
-
-# clean up as we are (in theory) being sourced in
-ADF_GITPULL_OUTPUT_FILE=""
