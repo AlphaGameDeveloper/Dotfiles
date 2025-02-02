@@ -46,9 +46,9 @@ cd $SCRIPT_DIR
 ORIGINAL_COMMIT=$(git log --format="%H" -n 1)
 
 # if linux
-if [ "$(uname)" == "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
 	ADF_GITPULL_OUTPUT_FILE=$(mktemp -t alphadotfiles.XXXXXX)
-elif [ "$(uname)" == "Darwin" ]; then
+elif [ "$(uname)" = "Darwin" ]; then
 	ADF_GITPULL_OUTPUT_FILE=$(mktemp -t alphadotfiles)
 fi
 
