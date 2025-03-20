@@ -7,6 +7,7 @@
 p="zshrc:"
 PLUGINSDIR="$HOME/.oh-my-zsh/custom/plugins"
 THEMESDIR="$HOME/.oh-my-zsh/custom/themes"
+CURRENTDIR=$(pwd)
 function pull_plugin_from_git {
 	# usage: <id> <repo>
 	if [ ! -d "$PLUGINSDIR/$1" ]; then
@@ -78,6 +79,8 @@ source $HOME/.dotfiles/import_all.sh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+cd $CURRENTDIR
 source $ZSH/oh-my-zsh.sh
 
 # I did not write this.  My friend did.  Please try to decipher it.
