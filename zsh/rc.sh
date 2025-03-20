@@ -31,6 +31,7 @@ pull_plugin_from_git command-time https://github.com/popstas/zsh-command-time.gi
 pull_plugin_from_git zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 pull_plugin_from_git you-should-use https://github.com/MichaelAquilina/zsh-you-should-use.git
 pull_plugin_from_git zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git
+pull_plugin_from_git zsh-github-copilot https://github.com/loiccoyle/zsh-github-copilot.git
 
 pull_theme_from_git  powerlevel10k https://github.com/romkatv/powerlevel10k.git
 # --------------------------------------------------
@@ -47,13 +48,27 @@ YSU_MODE=BESTMATCH
 YSU_IGNORED_ALIASES=("g" "ll" "lsa")
 
 plugins=(git 
+		 python
+		 ansible
 		 command-time 
-		 copyfile 
+		 copyfile
+		 zsh-github-copilot
 		 zsh-syntax-highlighting 
 		 you-should-use 
 		 zsh-autosuggestions
 )
 
+if [ "$(uname)" = "Darwin" ]; then
+	plugins+=macos
+fi
+
+if [ "$(uname)" = "Darwin" ]; then
+	bindkey '»' zsh_gh_copilot_explain  # bind Option+shift+\ to explain
+	bindkey '«' zsh_gh_copilot_suggest  # bind Option+\ to suggest
+else
+	bindkey '^[|' zsh_gh_copilot_explain  # bind Alt+shift+\ to explain
+	bindkey '^[\' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
+fi
 source $HOME/.dotfiles/import_all.sh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
