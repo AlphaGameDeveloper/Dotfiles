@@ -38,6 +38,7 @@ SCRIPT_DIR=$(dirname $script)
 $SHELL $SCRIPT_DIR/update_dotfiles.sh
 load_file exports.sh
 load_file alias.sh
+load_file warp.zsh
 load_file copilot.zsh
 load_file git/alias.sh
 load_file git/config.sh
