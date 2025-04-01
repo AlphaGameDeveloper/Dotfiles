@@ -8,3 +8,14 @@ alias ansible-playbook="ansible-playbook -i hosts"
 
 # Cloudflare WARP
 alias warp="warp-cli"
+
+# Bat -> 'batcat'
+# odd command...?
+alias bat="batcat"
+
+# Allow for ctrl-c with the 'sl' command
+alias sl="sl -e"
+
+# The line of shame...
+# I misspell 'cd' and write 'dc' instead...
+alias dc="echo You misspelled a two-letter command you idiot && cd"

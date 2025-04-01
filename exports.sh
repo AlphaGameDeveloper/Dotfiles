@@ -26,3 +26,7 @@ export PYTHONPYCACHEPREFIX=/tmp/pycache
 
 # for gpg, set the TTY to use
 export GPG_TTY=$(tty)
+
+# Ansible - We don't need cows
+# it's a fun feature but still...
+export ANSIBLE_NOCOWS=1
