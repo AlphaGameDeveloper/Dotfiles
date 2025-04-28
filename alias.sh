@@ -19,3 +19,6 @@ alias sl="sl -e"
 # The line of shame...
 # I misspell 'cd' and write 'dc' instead...
 alias dc="echo You misspelled a two-letter command you idiot && cd"
+
+# twingate
+alias tw=twingate

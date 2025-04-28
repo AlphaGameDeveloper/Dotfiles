@@ -52,9 +52,17 @@ elif [ "$(uname)" = "Darwin" ]; then
 	ADF_GITPULL_OUTPUT_FILE=$(mktemp -t alphadotfiles)
 fi
 
-git pull > $ADF_GITPULL_OUTPUT_FILE 2> $ADF_GITPULL_OUTPUT_FILE || update_failure git pull
+# use the github rest api to get the latest commit id
+# and compare it to the current commit id
+# if the commit id is different, then we need to update
+NEW_COMMIT=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+	"https://api.github.com/repos/AlphaGameDeveloper/Dotfiles/commits/master" | \
+	jq -r '.sha')
 
-NEW_COMMIT=$(git log --format="%H" -n 1)
+if [ "$ORIGINAL_COMMIT" != "$NEW_COMMIT" ]; then	
+	echo $NEW_COMMIT
+	git pull > $ADF_GITPULL_OUTPUT_FILE 2> $ADF_GITPULL_OUTPUT_FILE || update_failure git pull
+fi
 
 if [ "$ADF_KEEP_OLD_GITPULL_FILES" -eq "" ]; then
 	rm $ADF_GITPULL_OUTPUT_FILE
