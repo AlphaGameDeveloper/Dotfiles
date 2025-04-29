@@ -40,7 +40,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ZSH_COMMAND_TIME_MIN_SECONDS=3
+ZSH_COMMAND_TIME_MIN_SECONDS=5
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ZSH_COMMAND_TIME_COLOR="cyan"
 
@@ -70,15 +70,28 @@ else
 	bindkey '^[|' zsh_gh_copilot_explain  # bind Alt+shift+\ to explain
 	bindkey '^[\' zsh_gh_copilot_suggest  # bind Alt+\ to suggest
 fi
-source $HOME/.dotfiles/import_all.sh
+
+
+if test -n "$BASH" ; then script=$BASH_SOURCE
+elif test -n "$TMOUT"; then script=${.sh.file}
+elif test -n "$ZSH_NAME" ; then script=${(%):-%x}
+elif test ${0##*/} = dash; then x=$(lsof -p $$ -Fn0 | tail -1); script=${x#n}
+else script=$0
+fi
+
+
+SCRIPT_DIR=$(dirname $script)
+
+# the .. is because this script is in the zsh folder
+/usr/bin/env python3 $SCRIPT_DIR/../update_dotfiles.py
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+source $HOME/.dotfiles/import_all.sh
 
 cd $CURRENTDIR
 source $ZSH/oh-my-zsh.sh

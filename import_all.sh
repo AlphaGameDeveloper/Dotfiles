@@ -35,7 +35,6 @@ fi
 
 SCRIPT_DIR=$(dirname $script)
 
-$SHELL $SCRIPT_DIR/update_dotfiles.sh
 load_file exports.sh
 load_file alias.sh
 load_file warp.zsh
