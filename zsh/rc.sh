@@ -36,6 +36,7 @@ pull_plugin_from_git zsh-github-copilot https://github.com/loiccoyle/zsh-github-
 
 pull_theme_from_git  powerlevel10k https://github.com/romkatv/powerlevel10k.git
 # --------------------------------------------------
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -82,8 +83,6 @@ fi
 
 SCRIPT_DIR=$(dirname $script)
 
-# the .. is because this script is in the zsh folder
-/usr/bin/env python3 $SCRIPT_DIR/../update_dotfiles.py
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -93,7 +92,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 source $HOME/.dotfiles/import_all.sh
 
+
 cd $CURRENTDIR
+# the .. is because this script is in the zsh folder
+/usr/bin/env python3 $SCRIPT_DIR/update_dotfiles.py 
+
 source $ZSH/oh-my-zsh.sh
 
 # I did not write this.  My friend did.  Please try to decipher it.
