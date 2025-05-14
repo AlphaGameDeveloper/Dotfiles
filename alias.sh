@@ -11,7 +11,9 @@ alias warp="warp-cli"
 
 # Bat -> 'batcat'
 # odd command...?
-alias bat="batcat"
+if [ "$(uname)" != "Darwin" ]; then
+	alias bat="batcat"
+fi
 
 # Allow for ctrl-c with the 'sl' command
 alias sl="sl -e"
