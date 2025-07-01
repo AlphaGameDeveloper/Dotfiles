@@ -59,7 +59,7 @@ plugins=(git
 		 zsh-autosuggestions
 )
 
-if [ "$SSH_CONNECTION" == "" ]; then
+if [ "$SSH_CONNECTION" = "" ]; then
 	plugins+=zsh-github-copilot
 fi
 
