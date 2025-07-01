@@ -54,11 +54,14 @@ plugins=(git
 		 ansible
 		 command-time 
 		 copyfile
-		 zsh-github-copilot
 		 zsh-syntax-highlighting 
 		 you-should-use 
 		 zsh-autosuggestions
 )
+
+if [ "$SSH_CONNECTION" == "" ]; then
+	plugins+=zsh-github-copilot
+fi
 
 if [ "$(uname)" = "Darwin" ]; then
 	plugins+=macos
@@ -95,7 +98,7 @@ source $HOME/.dotfiles/import_all.sh
 
 cd $CURRENTDIR
 # the .. is because this script is in the zsh folder
-/usr/bin/env python3 $SCRIPT_DIR/update_dotfiles.py 
+# /usr/bin/env python3 $SCRIPT_DIR/update_dotfiles.py > /dev/null 
 
 source $ZSH/oh-my-zsh.sh
 
