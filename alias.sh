@@ -49,3 +49,5 @@ function grbl {
 	adb shell am force-stop dev.alphagame.seen
 	adb shell am start -n dev.alphagame.seen/.MainActivity
 }
+
+if [ "$(uname)" != "Darwin"]
