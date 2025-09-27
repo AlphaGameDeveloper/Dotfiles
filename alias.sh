@@ -47,8 +47,23 @@ function tree {
 	eval "$CMD"
 }
 
+function previous {
+	# git - soft reset to the previous commit, and find previous commit hash
+	# (find previous commit hash)
+	COMMIT_HASH=$(git rev-parse HEAD^)
+	COMMIT_HASH_SHORT=$(git rev-parse --short HEAD^)
+	COMMIT_MSG=$(git log -1 --pretty=%B "$COMMIT_HASH")
+	git reset --soft HEAD^
+	echo "previous: You're all set!"
+	echo "previous: Commit hash: $COMMIT_HASH_SHORT ($COMMIT_MSG)"
+}
 function grbl {
 	./gradlew assembleDebug installDebug
 	adb shell am force-stop dev.alphagame.seen
 	adb shell am start -n dev.alphagame.seen/.MainActivity
 }
+
+alias jekyll="bundle exec jekyll"
+
+# git
+alias gs="git stash"
