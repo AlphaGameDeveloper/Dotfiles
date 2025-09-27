@@ -12,8 +12,11 @@ alias warp="warp-cli"
 
 # Bat -> 'batcat'
 # odd command...?
-if [ "$(uname)" != "Darwin" ]; then
-	alias bat="batcat"
+if !command -v bat >/dev/null 2>&1; then
+	# if the 'bat' command doesn't 
+	if !command -v batcat >/dev/null 2>&1; then
+		alias bat="batcat"
+	fi
 fi
 
 # Allow for ctrl-c with the 'sl' command
@@ -49,5 +52,3 @@ function grbl {
 	adb shell am force-stop dev.alphagame.seen
 	adb shell am start -n dev.alphagame.seen/.MainActivity
 }
-
-if [ "$(uname)" != "Darwin"]
