@@ -93,12 +93,13 @@ SCRIPT_DIR=$(dirname $script)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 source $HOME/.dotfiles/import_all.sh
 
 
 cd $CURRENTDIR
 # the .. is because this script is in the zsh folder
-# /usr/bin/env python3 $SCRIPT_DIR/update_dotfiles.py > /dev/null 
+# /usr/bin/env python3 $SCRIPT_DIR/update_dotfiles.py > /dev/null &
 
 source $ZSH/oh-my-zsh.sh
 
